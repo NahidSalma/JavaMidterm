@@ -15,16 +15,32 @@ public class UnitTestSorting {
         Sort sort = new Sort();
 
         // Pass the unsorted array to selectionSort() method from Sort class
-        sort.selectionSort(unSortedArray);
+   /*     sort.selectionSort(unSortedArray);
 
         // Verify if the unsorted array is sorted by the selectionSort() method
         try {
             Assert.assertEquals(sortedArray, unSortedArray, "ARRAY IS NOT SORTED... YET!\n***YOU GOT THIS!***");
         } catch (Exception ex) {
             ex.getMessage();
-        }
+        }*/
+
+
+
 
         // Implement Unit test for rest of the sorting algorithms below
+
+        sort.heapSort(unSortedArray);
+        sort.printSortedArray(sort.heapSort(unSortedArray));
+
+        // Verify if the unsorted array is sorted by the heapSort() method
+        try {
+            Assert.assertEquals(sortedArray, unSortedArray, "ARRAY IS NOT SORTED... YET!\n***YOU GOT THIS!***");
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+
+
+
 
     }
 }
