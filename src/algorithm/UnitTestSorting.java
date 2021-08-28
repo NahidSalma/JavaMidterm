@@ -30,7 +30,7 @@ public class UnitTestSorting {
         // Implement Unit test for rest of the sorting algorithms below
 
         sort.heapSort(unSortedArray);
-        sort.printSortedArray(sort.heapSort(unSortedArray));
+//        sort.printSortedArray(sort.heapSort(unSortedArray));
 
         // Verify if the unsorted array is sorted by the heapSort() method
         try {

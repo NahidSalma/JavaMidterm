@@ -96,6 +96,7 @@ public class Sort {
 //        this.executionTime = executionTime;
 
         System.out.println("Sorting execution time: " + executionTime);
+        printSortedArray(array);
 
         return array;
     }
