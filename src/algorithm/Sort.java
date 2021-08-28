@@ -65,12 +65,84 @@ public class Sort {
         return list;
     }
 
-    public int[] quickSort(int[] array) {
+/*    public int[] quickSort(int[] array) {
         int[] list = array;
         //implement here
 
         return list;
+    }*/
+
+
+    public  int[] quickSort(int[] arr )
+    {
+        int firstIndex=0;
+        int lastIndex = arr.length-1;
+
+        //check for empty or null array
+        if (arr == null || arr.length == 0){
+            System.out.println("There is not data inside the array to be sorted.");
+            return arr;
+        }
+
+        if (firstIndex >= lastIndex){
+            System.out.println("First index cannot be greater than Last index.");
+            return arr;
+        }
+
+        //Get the midElement element from the middleIndex of the list
+        int middleIndex = firstIndex + (lastIndex - firstIndex) / 2;
+        int midElement = arr[middleIndex];
+
+        // make left < midElement and right > midElement
+//        int i = firstIndex, j = lastIndex;
+        while (firstIndex <= lastIndex)
+        {
+            //Check until all values on left side array are lower than midElement
+            while (arr[firstIndex] < midElement)
+            {
+                firstIndex++;
+            }
+            //Check until all values on left side array are greater than midElement
+            while (arr[lastIndex] > midElement)
+            {
+                lastIndex--;
+            }
+            //Now compare values from both side of lists to see if they need swapping
+            //After swapping move the iterator on both lists
+            if (firstIndex <= lastIndex)
+            {
+                swap (arr, firstIndex, lastIndex);
+                firstIndex++;
+                lastIndex--;
+            }
+        }
+        //Do same operation as above recursively to sort two sub arrays
+        if (firstIndex < lastIndex) quickSort(arr);
+        if (lastIndex > firstIndex) quickSort(arr);
+        return arr;
     }
+
+    public static void swap (int array[], int x, int y)
+    {
+        int temp = array[x];
+        array[x] = array[y];
+        array[y] = temp;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public int[] heapSort(int[] array) {
         final long startTime = System.currentTimeMillis();

@@ -4,6 +4,13 @@ import org.testng.Assert;
 
 public class UnitTestSorting {
 
+    public static void displaySortedArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + ", ");
+        }
+        System.out.println();
+    }
+
     /*
       This class is used to help with unit testing of sorting algorithms from the Sort class
      */
@@ -13,6 +20,9 @@ public class UnitTestSorting {
 
         // Create instance of Sort class
         Sort sort = new Sort();
+
+sort.quickSort(unSortedArray);
+        displaySortedArray(sort.quickSort(unSortedArray));
 
         // Pass the unsorted array to selectionSort() method from Sort class
    /*     sort.selectionSort(unSortedArray);
@@ -29,18 +39,17 @@ public class UnitTestSorting {
 
         // Implement Unit test for rest of the sorting algorithms below
 
-        sort.heapSort(unSortedArray);
+//        sort.heapSort(unSortedArray);
 //        sort.printSortedArray(sort.heapSort(unSortedArray));
 
         // Verify if the unsorted array is sorted by the heapSort() method
-        try {
+
+
+    /*    try {
             Assert.assertEquals(sortedArray, unSortedArray, "ARRAY IS NOT SORTED... YET!\n***YOU GOT THIS!***");
         } catch (Exception ex) {
             ex.getMessage();
-        }
-
-
-
+        }*/
 
     }
 }
