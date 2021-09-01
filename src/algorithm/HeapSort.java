@@ -7,8 +7,7 @@ public class HeapSort {
 
 
 
-    public int[]  getHeapSort(int arr[])
-    {
+    public int[]  getHeapSort(int arr[]) {
 
 
 
@@ -41,15 +40,20 @@ display(arr);
         int right = 2 * i + 2; //index of the right child of ith node  = 2*i + 2
         int temp;
 
+
         if (left < n && arr[left] > arr[MAX])            //check if the left child of the root is larger than the root
         {
             MAX = left;
         }
 
+
+
         if (right < n && arr[right] > arr[MAX])            //check if the right child of the root is larger than the root or left
         {
             MAX = right;
         }
+
+
 
         if (MAX != i)
         {                                               //repeat the procedure for finding the largest element in the heap
