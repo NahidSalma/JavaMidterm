@@ -19,28 +19,35 @@ public class Trainee implements Comparable<Trainee> {
         return firstName;
     }
 
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
 
     public String getLastName() {
         return lastName;
     }
 
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 
     public int getNumberOfExercisesSolved() {
         return numberOfExercisesSolved;
     }
 
+
     public void setNumberOfExercisesSolved(int numberOfExercisesSolved) {
         this.numberOfExercisesSolved = numberOfExercisesSolved;
     }
 
+
     public int compareTo(Trainee trainee) {
         return trainee.getNumberOfExercisesSolved() - this.getNumberOfExercisesSolved();
     }
+
 
 }

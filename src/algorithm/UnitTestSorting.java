@@ -2,6 +2,9 @@ package algorithm;
 
 import org.testng.Assert;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class UnitTestSorting {
 
     public static void displaySortedArray(int[] array) {
@@ -10,6 +13,10 @@ public class UnitTestSorting {
         }
         System.out.println();
     }
+
+
+
+
 
     /*
       This class is used to help with unit testing of sorting algorithms from the Sort class
@@ -20,9 +27,27 @@ public class UnitTestSorting {
 
         // Create instance of Sort class
         Sort sort = new Sort();
+       displaySortedArray(sort.quickSort(unSortedArray));
 
-sort.quickSort(unSortedArray);
-        displaySortedArray(sort.quickSort(unSortedArray));
+
+/*        System.out.println("Today's date is : " + LocalDate.now());
+        System.out.println("Today's date and time is : " + LocalDateTime.now());*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // Pass the unsorted array to selectionSort() method from Sort class
    /*     sort.selectionSort(unSortedArray);

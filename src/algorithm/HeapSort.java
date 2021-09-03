@@ -2,7 +2,7 @@ package algorithm;
 
 public class HeapSort {
 
-    int[] sortMe = {5,7,2,9,4,15,3};
+    int[] unSortedArray = {5,7,2,9,4,15};
 
 
 
