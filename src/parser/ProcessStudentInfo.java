@@ -1,10 +1,7 @@
 package parser;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -58,12 +55,31 @@ public class ProcessStudentInfo {
         seleniumStudents = xmlReader.parseData(tag, pathSelenium);
 
         // Parse Data using parseData method and then store data into QTP ArrayList.
+        qtpStudents = xmlReader.parseData(tag, pathQtp);
+
 
         // Add Selenium ArrayList data into map.
+        list.put("seleniumStudents", seleniumStudents);
+
 
         // Add Qtp ArrayList data into map.
+        list.put("qtpStudents", qtpStudents);
+
 
         // Retrieve map data and display output for both maps.
+
+//        System.out.println(list.get("seleniumStudents"));
+
+
+        for (Student st : seleniumStudents) {
+            System.out.println("SELENIUM Student (id= "+ st.getId() + ")\t\"" + st.getFirstName() + "\"\t \"" + st.getLastName() + "\"\t\t Grade= " + st.getScore());
+        }
+        System.out.println();
+
+        for (Student st : qtpStudents) {
+            System.out.println("QTP Student (id= "+ st.getId() + ")\t\"" + st.getFirstName() + "\"\t \"" + st.getLastName() + "\"\t\t Grade= " + st.getScore());
+        }
+
 
 
 
