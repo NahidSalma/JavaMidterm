@@ -1,5 +1,7 @@
 package math.problems;
 
+import parser.ParserUtils;
+
 public class Factorial {
 
     /*
@@ -9,7 +11,16 @@ public class Factorial {
      */
 
     public static void main(String[] args) {
-
+        System.out.println(getFactorial(0));
 
     }
+
+    public static int getFactorial(int num){
+        int i,fact=1;
+        for(i=1;i<=num;i++){
+            fact=fact*i;
+        }
+return fact;
+    }
+
 }
