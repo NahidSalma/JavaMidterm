@@ -1,8 +1,14 @@
 package design;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
-public class EmployeeInfo {
+public class EmployeeInfo extends AbstractClass{
 
     /*
     This class should implement the Employee interface. You can do that by directly implementing it, however you must
@@ -75,9 +81,58 @@ public class EmployeeInfo {
         return total;
     }
 
+
+    public static void addEmployee(int employee_id, String name, String department, String performance, int salary ){
+
+
+        String q = "insert into employee values ("
+                   + "'" + employee_id + "','" +  name + "','" +  department + "','" +  performance + "','" +  salary+ "')";
+
+
+    }
+
+
+
+
+    @Override
+    public void showResult() throws SQLException, IOException, ClassNotFoundException {
+        DbManager.getTableData("employee", "NAME");
+    }
+
+    @Override
+    public int employeeId() {
+
+
+        return 0;
+    }
+
+    @Override
+    public String employeeName() {
+
+
+        return null;
+    }
+
+    @Override
+    public void assignDepartment() {
+
+
+    }
+
+    @Override
+    public int calculateSalary() {
+        return 0;
+    }
+
+    @Override
+    public void benefitLayout() {
+
+    }
+
     private static class DateConversion {
 
         public DateConversion(Months months) {
+
         }
 
         public static String convertDate(String date) {
@@ -111,22 +166,22 @@ public class EmployeeInfo {
                     date = 6;
                     break;
                 case July:
-                    date = 1;
+                    date = 7;
                     break;
                 case August:
-                    date = 1;
+                    date = 8;
                     break;
                 case September:
-                    date = 1;
+                    date = 9;
                     break;
                 case October:
-                    date = 1;
+                    date = 10;
                     break;
                 case November:
-                    date = 1;
+                    date = 11;
                     break;
                 case December:
-                    date = 1;
+                    date = 12;
                     break;
                 default:
                     date = 0;

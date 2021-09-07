@@ -15,7 +15,16 @@ public class FortuneEmployee {
      </p>
      **/
     public static void main(String[] args) {
+//EmployeeInfo info = new EmployeeInfo(107);
+//DbManager.insertDataIntoTable(109);
 
+//        DbManager.getTableData("employee","NAME");
+//        DbManager.changeColumnDataType("SALARY", "double");
+//        DbManager.changeColumnDataType("employee","SALARY", "int");
+//        DbManager.getRowData("employee",107);
+//       DbManager.insertDataIntoTable(110);
+
+DbManager.getRowData("employee", 110);
     }
 
 }
