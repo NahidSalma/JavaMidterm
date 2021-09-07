@@ -45,7 +45,7 @@ public class DbManager {
         String user = config.getProperty("MYSQLJDBC.userName");
         String password = "";
         Connection connection = DriverManager.getConnection(url, user, password);
-        System.out.println("Database is connected");
+//        System.out.println("Database is connected");
         return connection;
     }
 
@@ -83,10 +83,10 @@ public class DbManager {
 
             int employee_id = employeeId;
 
-            System.out.println("Enter the Employee name: (String data):");
+            System.out.println("Enter the Employee name (String data):");
             String name = input.readLine();
 
-            System.out.println("Enter the department of the Employee (String data):");
+            System.out.println("Enter the department of the Employee (HR/Tester/Developer):");
             String department = input.readLine();
 
             System.out.println("Enter the performance of the Employee (excellent/good/average):");
@@ -186,7 +186,6 @@ public class DbManager {
                         resultSet.getString("PERFORMANCE")  + "\t" +
                         resultSet.getString("SALARY"));
 
-//                System.out.println(resultSet.getRow());
             }
             connection.close();
 
@@ -199,6 +198,135 @@ public class DbManager {
             e.printStackTrace();
         }
     }
+
+
+
+    public static String getDeptOfEmployee(String tableName, int employeeID){
+        String departmentName = " ";
+        try {
+            Connection connection = DbManager.getDbInstance();
+            Statement stmt = connection.createStatement();
+
+            String query = "SELECT DEPARTMENT FROM " + tableName + " WHERE EMPLOYEE_ID = " + employeeID;
+//            System.out.println(query);
+
+            ResultSet resultSet = stmt.executeQuery(query);
+
+            while ((resultSet.next())) {
+
+//                System.out.println(resultSet.getString("DEPARTMENT"));
+                departmentName = resultSet.getString("DEPARTMENT");
+
+            }
+
+             connection.close();
+//            System.out.println("DB connection is closed.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("error executing SQL query");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return departmentName;
+    }
+
+
+    public static String getEmployeePerformance(String tableName, int employeeID){
+        String performance = " ";
+        try {
+            Connection connection = DbManager.getDbInstance();
+            Statement stmt = connection.createStatement();
+
+            String query = "SELECT PERFORMANCE FROM " + tableName + " WHERE EMPLOYEE_ID = " + employeeID;
+//            System.out.println(query);
+
+            ResultSet resultSet = stmt.executeQuery(query);
+
+            while ((resultSet.next())) {
+
+//                System.out.println(resultSet.getString("DEPARTMENT"));
+                performance = resultSet.getString("PERFORMANCE");
+
+            }
+
+            connection.close();
+//            System.out.println("DB connection is closed.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("error executing SQL query");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return performance;
+    }
+
+
+    public static double getEmployeeSalary(String tableName, int employeeID){
+        double salary =0.0;
+        try {
+            Connection connection = DbManager.getDbInstance();
+            Statement stmt = connection.createStatement();
+
+            String query = "SELECT SALARY FROM " + tableName + " WHERE EMPLOYEE_ID = " + employeeID;
+//            System.out.println(query);
+
+            ResultSet resultSet = stmt.executeQuery(query);
+
+            while ((resultSet.next())) {
+
+//                System.out.println(resultSet.getString("DEPARTMENT"));
+                salary = resultSet.getDouble("SALARY");
+
+            }
+
+            connection.close();
+//            System.out.println("DB connection is closed.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("error executing SQL query");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return salary;
+    }
+
+    public static void updateInfo(String tableName, String columnName, String value, int employeeID){
+        try {
+            Connection connection = DbManager.getDbInstance();
+            Statement stmt = connection.createStatement();
+
+
+            String query = "update " + tableName + " set " + columnName + "=\"" + value + "\" WHERE EMPLOYEE_ID=" + employeeID;
+            System.out.println(query);
+
+            int rows = stmt.executeUpdate(query);
+            if(rows>0){
+                System.out.println("Info updated Successfully! " + rows + " rows affected.");
+            }
+
+            connection.close();
+//            System.out.println("DB connection is closed.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("error executing SQL query");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 
  /*   private void close() {

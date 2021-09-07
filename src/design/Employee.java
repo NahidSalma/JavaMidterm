@@ -20,7 +20,7 @@ public interface Employee {
     String employeeName();
 
     //assignDepartment() will assign employee to departments
-    void assignDepartment();
+    void assignDepartment(String tableName, String columnName, String value, int employeeID);
 
     //calculate employee salary
     int calculateSalary();

@@ -10,6 +10,9 @@ import java.util.Scanner;
 
 public class EmployeeInfo extends AbstractClass{
 
+     int employee_id;
+     String employeeName = "";
+
     /*
     This class should implement the Employee interface. You can do that by directly implementing it, however you must
         also implement the Employee interface into an abstract class. So create an Abstract class then inherit that
@@ -38,6 +41,7 @@ public class EmployeeInfo extends AbstractClass{
      You must have/use multiple constructors
      */
     public EmployeeInfo(int employeeId) {
+employee_id = employeeId;
 
     }
 
@@ -53,8 +57,23 @@ public class EmployeeInfo extends AbstractClass{
             You can set arbitrary number for performance, so you probably need to send 2 arguments.
      *
      */
-    public static int calculateEmployeeBonus(int numberOfYearsWithCompany) {
-        int total = 0;
+    public static double calculateEmployeeBonus(int numberOfYearsWithCompany, int id) {
+        double total = 0;
+double salary = DbManager.getEmployeeSalary("employee", id);
+String performance = DbManager.getEmployeePerformance("employee", id);
+        switch (performance){
+            case "excellent":
+               total = (salary*0.1)*numberOfYearsWithCompany;
+               break;
+            case "good":
+                total = (salary*0.08)*numberOfYearsWithCompany;
+                break;
+            case "average":
+                total = (salary*0.05)*numberOfYearsWithCompany;
+                break;
+
+        }
+
         return total;
     }
 
@@ -65,8 +84,8 @@ public class EmployeeInfo extends AbstractClass{
             Example: Employee will receive 5% of salary as pension for every year they are with the company
      *
      */
-    public static int calculateEmployeePension() {
-        int total = 0;
+    public static double calculateEmployeePension(int employeeId) {
+        double total = 0;
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter start date in format (example: May,2015): ");
         String joiningDate = sc.nextLine();
@@ -75,6 +94,18 @@ public class EmployeeInfo extends AbstractClass{
         String convertedJoiningDate = DateConversion.convertDate(joiningDate);
         String convertedTodaysDate = DateConversion.convertDate(todaysDate);
 
+        System.out.println("Jointing year: " + convertedJoiningDate);
+        System.out.println("Finishing year: " + convertedTodaysDate);
+
+        double yearOfService = DateConversion.differenceOfTwoDatesInYears(convertedJoiningDate,convertedTodaysDate);
+        System.out.println("Years of service: " + yearOfService);
+
+
+        double salary = DbManager.getEmployeeSalary("employee", employeeId);
+        total = yearOfService*salary*0.05;
+        System.out.println("Total Pension due: " + total);
+
+
         // Figure out how to extract the number of years the employee has been with the company, using the above 2 dates
         // Calculate pension
 
@@ -82,41 +113,29 @@ public class EmployeeInfo extends AbstractClass{
     }
 
 
-    public static void addEmployee(int employee_id, String name, String department, String performance, int salary ){
-
-
-        String q = "insert into employee values ("
-                   + "'" + employee_id + "','" +  name + "','" +  department + "','" +  performance + "','" +  salary+ "')";
-
-
-    }
-
-
 
 
     @Override
-    public void showResult() throws SQLException, IOException, ClassNotFoundException {
-        DbManager.getTableData("employee", "NAME");
+    public void getEmployeeInfo(int employeeId){
+        DbManager.getRowData("employee", employeeId);
+
     }
 
     @Override
     public int employeeId() {
-
-
-        return 0;
+        return employee_id;
     }
 
     @Override
     public String employeeName() {
 
 
-        return null;
+        return employeeName;
     }
 
     @Override
-    public void assignDepartment() {
-
-
+    public void assignDepartment(String tableName, String columnName, String value, int employeeID) {
+        DbManager.updateInfo(tableName, columnName, value,employeeID);
     }
 
     @Override
@@ -129,10 +148,34 @@ public class EmployeeInfo extends AbstractClass{
 
     }
 
+ /*   public static void main(String[] args) {
+        double years = DateConversion.differenceOfTwoDatesInYears("1/2005","8/2021");
+        System.out.println("difference is: " + years);
+    }*/
+
+
     private static class DateConversion {
 
         public DateConversion(Months months) {
 
+        }
+
+        public static double differenceOfTwoDatesInYears(String date1, String date2){
+            double years = 0;
+
+            String[] extractDate1 = date1.split("/");
+            int month1 = Integer.parseInt(extractDate1[0]);
+            int year1 = Integer.parseInt(extractDate1[1]);
+
+            String[] extractDate2 = date2.split("/");
+            int month2 = Integer.parseInt(extractDate2[0]);
+            int year2 = Integer.parseInt(extractDate2[1]);
+
+            years = (((year2-1)*12+month2)-((year1-1)*12+month1))/12;
+
+
+
+            return years;
         }
 
         public static String convertDate(String date) {

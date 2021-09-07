@@ -24,7 +24,15 @@ public class FortuneEmployee {
 //        DbManager.getRowData("employee",107);
 //       DbManager.insertDataIntoTable(110);
 
-DbManager.getRowData("employee", 110);
+//DbManager.getRowData("employee", 110);
+//DbManager.getDeptOfEmployee("employee", 107);
+//        System.out.println(DbManager.getEmployeeSalary("employee", 107));
+//        System.out.println(EmployeeInfo.calculateEmployeeBonus(8, 107));
+//        System.out.println(EmployeeInfo.calculateEmployeePension( 107));
+        DbManager.updateInfo("employee", "DEPARTMENT", "Developer",106);
+
+
+
     }
 
 }
